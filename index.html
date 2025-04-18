@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday, Felicia!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+    h1 {
+      font-size: 60px;
+      text-align: center;
+      animation: colorChange 2s infinite;
+      margin: 0;
+      z-index: 10;
+    }
+    @keyframes colorChange {
+      0% { color: #ff004f; }
+      25% { color: #ff9a00; }
+      50% { color: #14fc56; }
+      75% { color: #00f0ff; }
+      100% { color: #ff004f; }
+    }
+    .confetti {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(17, 17, 17, 0.9);
+      color: #fff;
+      padding: 30px;
+      border: 2px solid #ff004f;
+      border-radius: 20px;
+      max-width: 600px;
+      z-index: 100;
+      text-align: center;
+      box-shadow: 0 0 20px #ff004f;
+    }
+    .popup button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ff004f;
+      border: none;
+      color: #fff;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .popup button:hover {
+      background: #ff9a00;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti" class="confetti"></canvas>
+  <h1>Happy Birthday, Felicia! 🎉</h1>
+
+  <div class="popup" id="messagePopup">
+    <p>Happy Birthday to one of my favourite human beings! 🎈<br><br>
+    I am sure I have often shared that you are amazing and I love you (despite some of our behaviour).<br><br>
+    Thank you for being amazing! Know that every room you enter, you always light it up! You are irreplaceable, even with the extra razzle dazzle (let the church deep sigh a little).<br><br>
+    You are a wonderful mom, actually one of a kind with a little extra razzle dazzle!<br><br>
+    Superwoman and an amazing woman!<br><br>
+    I pray that God will continue to bless and keep you, may He preserve and strengthen you! Keep you in good health as next birthday and beyond you will not lack, you will have in abundance and enjoy that "soft girl life". Cheers to future frequent vacations and travels in good health! 🌸✨<br><br>
+    Love you,<br>
+    Jojo ❤️</p>
+    <button onclick="closePopup()">Awww, thank you!</button>
+  </div>
+
+  <audio autoplay loop>
+    <source src="your-song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="sparkleSound">
+    <source src="sparkle.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script>
+    const canvas = document.getElementById('confetti');
+    const myConfetti = confetti.create(canvas, {
+      resize: true,
+      useWorker: true
+    });
+
+    const sparkleSound = document.getElementById('sparkleSound');
+
+    setInterval(() => {
+      myConfetti({
+        particleCount: 100,
+        spread: 160,
+        origin: { y: 0.6 }
+      });
+      sparkleSound.currentTime = 0;
+      sparkleSound.play();
+    }, 1000);
+
+    function closePopup() {
+      document.getElementById('messagePopup').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
